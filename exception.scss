@@ -1,0 +1,80 @@
+// CUBE: Exceptions - Context-specific modifications
+// ================================
+
+// Responsive exceptions
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+  
+  nav ul {
+    gap: 1rem;
+  }
+  
+  article section {
+    padding: 2rem;
+  }
+  
+  .page-footer ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+// Animation keyframes
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes pulse-nebula {
+  0% { 
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  100% { 
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.1;
+  }
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shine {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+@keyframes rotate-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+// Reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
+}
