@@ -1,0 +1,11 @@
+// ======== LINKS =========
+
+// stylelint-disable-next-line no-descending-specificity
+.page-footer [class^="link"] {
+    width: 100%;
+    min-height: 2.5em;
+    background-color: var(--color-background);
+    color: var(--color-primary);
+  }
+
+  
