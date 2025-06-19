@@ -1,6 +1,4 @@
-
-@use 'reset';
-@use 'composition';
-@use 'utility';
-@use 'block';
-@use 'exception';
+@use 'composition.scss';
+@use 'utility.scss';
+@use 'block.scss';
+@use 'exception.scss';
