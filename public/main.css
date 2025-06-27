@@ -663,4 +663,16 @@ aside ul li.profile-title span:first-child, aside ul li.profile-author span:firs
   }
 }
 
+@media (prefers-color-scheme: light) {
+  #main, header, footer {
+    background-color: white;
+  }
+  #main p, #main li{
+    color: black;
+  }
+  #main .container p {
+    color: black;
+  }
+}
+
 /*# sourceMappingURL=main.css.map */
