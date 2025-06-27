@@ -74,7 +74,7 @@ header {
   position: relative;
 }
 header::before {
-  content: "🚀";
+  content: url("images/rocket_img.png");
   position: absolute;
   top: 20%;
   left: 5%;
@@ -328,6 +328,16 @@ blockquote p {
   font-style: italic;
 }
 
+.container h2 ~ p + ul::before {
+  content: url("images/shooting-star.png");
+  position: absolute;
+  top: 20px;
+  right: 5%;
+  font-size: 4rem;
+  opacity: 0.6;
+  animation: shooting-star-dramatic 2s ease-in-out infinite;
+}
+
 a {
   color: #4fc3f7;
   text-decoration: none;
@@ -371,23 +381,11 @@ aside {
   border: 1px solid rgba(100, 181, 246, 0.3);
   backdrop-filter: blur(10px);
 }
-aside.profile {
-  border-radius: 15px 40px 15px 40px;
-}
-aside.profile::before {
-  content: "🌌";
-  position: absolute;
-  top: -15px;
-  right: -15px;
-  font-size: 3rem;
-  opacity: 0.6;
-  animation: galaxy-spin 4s linear infinite;
-}
 aside#styles {
   border-radius: 40px 15px 40px 15px;
 }
 aside#styles::before {
-  content: "🛸";
+  content: url("images/ufo.webp");
   position: absolute;
   top: -20px;
   left: -20px;
@@ -449,15 +447,6 @@ aside ul li.profile-title span:first-child, aside ul li.profile-author span:firs
   border-top: 1px solid rgba(100, 181, 246, 0.2);
   padding: 3rem 0;
   margin-top: 4rem;
-}
-.page-footer::before {
-  content: "🌠";
-  position: absolute;
-  top: 20px;
-  right: 5%;
-  font-size: 4rem;
-  opacity: 0.6;
-  animation: shooting-star-dramatic 2s ease-in-out infinite;
 }
 .page-footer ul {
   list-style: none;
