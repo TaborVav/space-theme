@@ -1,0 +1,70 @@
+// CUBE: Composition - Layout patterns and structural styling
+// ================================
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', monospace;
+  background: radial-gradient(ellipse at center, #0c1445 0%, #000000 70%);
+  color: #e6f3ff;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  
+  // Random star field
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(3px 3px at 23px 47px, #fff, transparent),
+      radial-gradient(4px 4px at 67px 123px, rgba(255,255,255,0.9), transparent),
+      radial-gradient(2px 2px at 145px 89px, #eee, transparent),
+      radial-gradient(3px 3px at 198px 156px, rgba(255,255,255,0.8), transparent),
+      radial-gradient(5px 5px at 289px 67px, #fff, transparent),
+      radial-gradient(2px 2px at 334px 234px, rgba(255,255,255,0.9), transparent),
+      radial-gradient(3px 3px at 412px 178px, #eee, transparent),
+      radial-gradient(4px 4px at 567px 298px, rgba(255,255,255,0.7), transparent),
+      radial-gradient(2px 2px at 623px 89px, #fff, transparent),
+      radial-gradient(3px 3px at 734px 367px, rgba(255,255,255,0.8), transparent);
+    background-repeat: repeat;
+    background-size: 800px 400px;
+    animation: twinkle-intense 2s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: -1;
+  }
+  
+  // Black hole background element
+  &::after {
+    content: '';
+    position: fixed;
+    top: 15%;
+    right: -150px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, transparent 20%, rgba(138, 43, 226, 0.6) 30%, rgba(0, 0, 0, 0.9) 60%, transparent 80%);
+    border-radius: 50%;
+    animation: rotate-slow 10s linear infinite, pulse-blackhole-intense 4s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
