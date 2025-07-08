@@ -1,152 +1,144 @@
 // CUBE: Blocks - Component-level styling
-// ================================
+// ======================================
 
-// Header Block
+// Fonts & Variables
+@import url('https://fonts.googleapis.com/css2?family=Sarpanch:wght@400;500;600;700;800;900&display=swap');
+
+$prime-black: #0c0c0c;
+$prime-white: #fffcf9;
+$prime-red: #fc3d21;
+$prime-blue: #0b3d91;
+
+// Global Reset
+* {
+  text-align: left;
+  color: $prime-black;
+}
+
+// ----------------------------------
+// HEADER
+// ----------------------------------
 header {
   padding: 4rem 0;
   text-align: center;
   position: relative;
-  
-  // Rocket background element
-  &::before {
-    content: url('images/rocket_img.png');
-    position: absolute;
-    top: 20%;
-    left: 5%;
-    font-size: 6rem;
-    opacity: 0.3;
-    animation: float-rocket-dramatic 3s ease-in-out infinite alternate;
-    z-index: -1;
-  }
-  
-  // Nebula effect
+  background-color: $prime-white;
+  color: $prime-black;
+  overflow: hidden;
+  animation: reveal-text 2s ease-out forwards;
+  opacity: 0;
+  filter: blur(4px);
+
   &::after {
     content: '';
     position: absolute;
-    top: 50%;
-    right: 10%;
-    transform: translate(50%, -50%);
-    width: 350px;
-    height: 350px;
-    background: radial-gradient(circle, rgba(138, 43, 226, 0.6) 0%, rgba(0, 188, 212, 0.4) 50%, transparent 80%);
-    border-radius: 50%;
-    animation: pulse-nebula-intense 3s ease-in-out infinite alternate;
-    z-index: -1;
+    inset: 0;
+    background: repeating-linear-gradient(to bottom, transparent 0 1px, rgba(94, 94, 94, 0.07) 1px 2px);
+    pointer-events: none;
+    z-index: 10;
+    animation: scanlines 1.5s infinite linear;
   }
+
+  
   
   h1 {
+    font-family: "Sarpanch", sans-serif;
+    text-transform: uppercase;
     font-size: clamp(3rem, 8vw, 6rem);
+    color: $prime-black;
     margin: 0;
-    background: linear-gradient(45deg, #00bcd4, #9c27b0, #ff6b35, #4fc3f7);
-    background-size: 400% 400%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradient-shift-intense 3s ease infinite;
-    text-shadow: 0 0 50px rgba(156, 39, 176, 0.8);
     position: relative;
-    
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, transparent 45%, rgba(255,255,255,0.9) 50%, transparent 55%);
-      animation: shine-dramatic 2s ease-in-out infinite;
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
   }
-  
+
   h2 {
     font-size: clamp(1.2rem, 3vw, 1.8rem);
     margin: 1rem 0 2rem;
-    color: #64b5f6;
+    color: $prime-black;
     font-weight: 300;
     letter-spacing: 2px;
     opacity: 0;
     animation: fade-in-up 1s ease 0.5s forwards;
   }
-  
+
   p {
     margin: 2rem 0;
     opacity: 0;
     animation: fade-in-up 1s ease 1s forwards;
-    
+
     a {
-      color: #80cbc4;
+      color: $prime-black;
       text-decoration: none;
       position: relative;
-      transition: all 0.3s ease;
-      
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease ease;
+
       &::after {
         content: '';
         position: absolute;
         bottom: -2px;
         left: 0;
         width: 0;
-        height: 2px;
-        background: linear-gradient(90deg, #80cbc4, #4fc3f7);
+        height: 1.5px;
+        background: $prime-black;
         transition: width 0.3s ease;
       }
-      
+
       &:hover {
-        color: #4fc3f7;
-        text-shadow: 0 0 10px rgba(79, 195, 247, 0.5);
-        
+        color: lighten($prime-black, 20%);
+        text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+
         &::after {
           width: 100%;
+          background: lighten($prime-black, 40%);
         }
       }
     }
   }
-}
 
-.link-github {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 1rem 2rem;
-  text-decoration: none;
-  border-radius: 50px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s ease;
+  .container {
+    border: none;
   }
-  
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-    
-    &::before {
-      left: 100%;
+
+  a.link {
+    background: none;
+    border: 2px solid $prime-black;
+    color: $prime-black;
+    padding: 0.75rem 1.5rem;
+    font-family: "Sarpanch", sans-serif;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+      background-color: $prime-black;
+      color: $prime-white;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
     }
   }
-  
-  svg {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-  }
 }
 
-// Navigation Block
+// ----------------------------------
+// CONTAINER
+// ----------------------------------
+div.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  // padding: 0 2rem;
+  // position: relative;
+  z-index: 2;
+  background-color: $prime-white;
+  border-radius: 20px;
+  padding: 3rem;
+  margin-bottom: 2rem;
+  border: 1px solid $prime-blue;
+  // backdrop-filter: blur(5px);
+  // overflow: hidden;
+}
+
+// ----------------------------------
+// NAVIGATION
+// ----------------------------------
 nav {
   background: rgba(13, 71, 161, 0.1);
   backdrop-filter: blur(10px);
@@ -155,17 +147,16 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  
+
   ul {
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 1rem 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 1rem 0;
   }
-  
+
   a {
     color: #e6f3ff;
     text-decoration: none;
@@ -174,25 +165,22 @@ nav {
     transition: all 0.3s ease;
     position: relative;
     font-weight: 500;
-    
+
     &::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      inset: 0;
       background: linear-gradient(45deg, #00bcd4, #9c27b0);
       border-radius: 25px;
       opacity: 0;
       transition: opacity 0.3s ease;
       z-index: -1;
     }
-    
+
     &:hover {
       color: white;
       transform: translateY(-2px);
-      
+
       &::before {
         opacity: 1;
       }
@@ -200,40 +188,40 @@ nav {
   }
 }
 
-// Main Content Block
+// ----------------------------------
+// MAIN / SECTIONS
+// ----------------------------------
 main {
   padding: 4rem 0;
 }
 
 section {
-    background: rgba(13, 71, 161, 0.1);
-    border-radius: 20px;
-    padding: 3rem;
-    margin-bottom: 2rem;
-    border: 1px solid rgba(100, 181, 246, 0.2);
-    backdrop-filter: blur(5px);
-    position: relative;
-    overflow: hidden;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(100, 181, 246, 0.1) 0%, transparent 50%);
-      animation: rotate-slow 20s linear infinite;
-      z-index: -1;
-    }
+  background: rgba(13, 71, 161, 0.1);
+  border-radius: 20px;
+  padding: 3rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(100, 181, 246, 0.2);
+  backdrop-filter: blur(5px);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(100, 181, 246, 0.1) 0%, transparent 50%);
+    z-index: -1;
   }
-  
+
   h2 {
     font-size: clamp(2rem, 5vw, 3rem);
-    margin: 0 0 2rem 0;
-    color: #4fc3f7;
+    margin: 0 0 2rem;
+    color: $prime-black;
     position: relative;
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -244,28 +232,28 @@ section {
       background: linear-gradient(90deg, #4fc3f7, #9c27b0);
     }
   }
-  
+
   h3 {
     color: #80cbc4;
     font-size: 1.5rem;
     margin: 2rem 0 1rem 0;
   }
-  
+
   p {
     line-height: 1.8;
     margin-bottom: 1.5rem;
-    color: #e1f5fe;
+    color: $prime-black;
   }
-  
+
   ul, ol {
     line-height: 1.8;
-    
+
     li {
       margin-bottom: 0.5rem;
-      color: #e1f5fe;
+      color: $prime-blue;
     }
   }
-  
+
   blockquote {
     background: rgba(156, 39, 176, 0.1);
     border-left: 4px solid #9c27b0;
@@ -273,7 +261,7 @@ section {
     margin: 2rem 0;
     border-radius: 0 15px 15px 0;
     position: relative;
-    
+
     &::before {
       content: '"';
       position: absolute;
@@ -283,15 +271,15 @@ section {
       color: #9c27b0;
       opacity: 0.3;
     }
-    
+
     p {
       margin: 0;
       font-style: italic;
     }
   }
 
-  .container h2 ~ p + ul{
-     &::before {
+  .container h2 ~ p + ul {
+    &::before {
       content: url('images/shooting-star.png');
       position: absolute;
       top: 20px;
@@ -299,22 +287,66 @@ section {
       font-size: 4rem;
       opacity: 0.6;
       animation: shooting-star-dramatic 2s ease-in-out infinite;
+    }
   }
+}
+
+header h2 {
+  color: $prime-blue;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+header p a{
+  color: $prime-red;
+  font-weight: 600;
+}
+// ----------------------------------
+// ASIDE
+// ----------------------------------
+aside {
+  border-radius: 30px 10px 30px 10px;
+  padding: 2rem;
+  margin: 2rem auto;
+  border: 2px solid $prime-black;
+  backdrop-filter: blur(10px);
+  background-color: $prime-white;
+
+  &#styles {
+    border-radius: 40px 15px 40px 15px;
+
+    &::before {
+      content: url('images/ufo.webp');
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      font-size: 3.5rem;
+      opacity: 0.5;
+      animation: float-ufo-dramatic 2s ease-in-out infinite alternate;
+    }
   }
 
-// Links styling
+  h2, h4 {
+    color: #4fc3f7;
+    margin-top: 0;
+    // animation: ...
+  }
+}
+
+// ----------------------------------
+// LINKS
+// ----------------------------------
 a {
   color: #4fc3f7;
   text-decoration: none;
   transition: all 0.3s ease;
-  
+
   &:hover {
     color: #80cbc4;
     text-shadow: 0 0 5px rgba(128, 203, 196, 0.5);
   }
 }
 
-// Special link styles
 .link-guidelines,
 .link-downloadcss,
 .link-downloadhtml,
@@ -329,7 +361,7 @@ a {
   margin: 1rem 0;
   transition: all 0.3s ease;
   box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-  
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
@@ -337,131 +369,64 @@ a {
   }
 }
 
-// Aside Blocks
-aside {
-  background: rgba(13, 71, 161, 0.15);
-  border-radius: 30px 10px 30px 10px;
-  padding: 2rem;
-  margin: 2rem auto;
-  border: 1px solid rgba(100, 181, 246, 0.3);
-  backdrop-filter: blur(10px);
-  
-  &#styles {
-    border-radius: 40px 15px 40px 15px;
-    
+.link-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, $prime-black 0%, $prime-blue 100%);
+  color: white;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+
     &::before {
-      content: url('images/ufo.webp');
-      position: absolute;
-      top: -20px;
-      left: -20px;
-      font-size: 3.5rem;
-      opacity: 0.5;
-      animation: float-ufo-dramatic 2s ease-in-out infinite alternate;
+      left: 100%;
     }
   }
-  
-  h2, h4 {
-    color: #4fc3f7;
-    margin-top: 0;
-    animation: glow-pulse 3s ease-in-out infinite alternate;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-    
-    li {
-      margin-bottom: 1rem;      
-      &.profile-title,
-      &.profile-author,
-      &.profile-twitter,
-      &.profile-website {
-        display: flex;
-        gap: 1rem;
-        
-        span:first-child {
-          font-weight: bold;
-          color: #80cbc4;
-          min-width: 80px;
-        }
-      }
-    }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
   }
 }
 
-.features {
-  li {
-    background: rgba(100, 181, 246, 0.1);
-    border-radius: 20px 5px 20px 5px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    transition: all 0.3s ease;
-    
-    &:hover {
-      background: rgba(100, 181, 246, 0.2);
-      transform: translateX(15px) scale(1.02);
-      
-      &:nth-child(even) {
-        transform: translateX(-15px) scale(1.02);
-      }
-    }
-    
-    a {
-      font-weight: bold;
-      font-size: 1.1rem;
-      
-      &::after {
-        content: ' →';
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      
-      &:hover::after {
-        opacity: 1;
-      }
-    }
-  }
+// ----------------------------------
+// ANIMATIONS
+// ----------------------------------
+@keyframes reveal-text {
+  0% { opacity: 0; filter: blur(6px); transform: translateY(10px) scaleY(1.1); }
+  40% { opacity: 0.5; filter: blur(3px); transform: translateY(-2px); }
+  70% { opacity: 0.8; filter: blur(1px); transform: translateY(1px); }
+  100% { opacity: 1; filter: blur(0); transform: translateY(0); }
 }
 
-// Footer Block
-.page-footer {
-  background: rgba(0, 0, 0, 0.3);
-  border-top: 1px solid rgba(100, 181, 246, 0.2);
-  padding: 3rem 0;
-  margin-top: 4rem;
+@keyframes scanlines {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 4px; }
+}
 
-    ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    gap: 2rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin: 2rem 0;
-    
-    a {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem 1rem;
-      border-radius: 25px;
-      transition: all 0.3s ease;
-      
-      &:hover {
-        background: rgba(100, 181, 246, 0.1);
-      }
-      
-      svg {
-        width: 16px;
-        height: 16px;
-        fill: currentColor;
-      }
-    }
-  }
-  
-  p {
-    text-align: center;
-    color: #b0bec5;
-    margin: 1rem 0;
-  }
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
