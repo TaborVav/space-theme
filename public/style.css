@@ -27,7 +27,7 @@ body::before {
   background-image: radial-gradient(3px 3px at 23px 47px, #fff, transparent), radial-gradient(4px 4px at 67px 123px, rgba(255, 255, 255, 0.9), transparent), radial-gradient(2px 2px at 145px 89px, #eee, transparent), radial-gradient(3px 3px at 198px 156px, rgba(255, 255, 255, 0.8), transparent), radial-gradient(5px 5px at 289px 67px, #fff, transparent), radial-gradient(2px 2px at 334px 234px, rgba(255, 255, 255, 0.9), transparent), radial-gradient(3px 3px at 412px 178px, #eee, transparent), radial-gradient(4px 4px at 567px 298px, rgba(255, 255, 255, 0.7), transparent), radial-gradient(2px 2px at 623px 89px, #fff, transparent), radial-gradient(3px 3px at 734px 367px, rgba(255, 255, 255, 0.8), transparent);
   background-repeat: repeat;
   background-size: 800px 400px;
-  animation: twinkle-intense 45s ease-in-out infinite alternate;
+  animation: twinkle-intense 20s ease-in-out infinite alternate;
   pointer-events: none;
   z-index: -1;
 }
@@ -65,6 +65,10 @@ body::after {
   color: #0c0c0c;
 }
 
+h2 {
+  font-family: "Sarpanch", sans-serif;
+}
+
 header {
   padding: 4rem 0;
   text-align: center;
@@ -80,10 +84,8 @@ header::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(to bottom, transparent 0 1px, rgba(94, 94, 94, 0.07) 1px 2px);
   pointer-events: none;
   z-index: 10;
-  animation: scanlines 1.5s infinite linear;
 }
 header h1 {
   font-family: "Sarpanch", sans-serif;
@@ -109,7 +111,7 @@ header p {
   animation: fade-in-up 1s ease 1s forwards;
 }
 header p a {
-  color: #0c0c0c;
+  color: #0b3d91;
   text-decoration: none;
   position: relative;
   border-bottom: 1px solid transparent;
@@ -122,45 +124,36 @@ header p a::after {
   left: 0;
   width: 0;
   height: 1.5px;
-  background: #0c0c0c;
+  background: #fc3d21;
   transition: width 0.3s ease;
 }
 header p a:hover {
-  color: #3f3f3f;
-  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  color: rgb(20.7692307692, 101.5384615385, 237.2307692308);
+  text-shadow: 0 0 6px #fffcf9;
 }
 header p a:hover::after {
   width: 100%;
-  background: #727272;
+  background: rgb(115.5769230769, 163.6538461538, 244.4230769231);
 }
 header .container {
   border: none;
-}
-header a.link {
-  background: none;
-  border: 2px solid #0c0c0c;
-  color: #0c0c0c;
-  padding: 0.75rem 1.5rem;
-  font-family: "Sarpanch", sans-serif;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-header a.link:hover {
-  background-color: #0c0c0c;
-  color: #fffcf9;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
 }
 
 div.container {
   max-width: 1200px;
   margin: 0 auto;
   z-index: 2;
-  background-color: #fffcf9;
+  background: linear-gradient(to right, rgba(70, 233, 255, 0.0901960784) 0%, transparent 40%, transparent 60%, rgba(70, 233, 255, 0.0901960784) 100%), repeating-linear-gradient(to bottom, rgba(70, 233, 255, 0.0901960784) 0 2px, transparent 2px 6px);
+  background-blend-mode: multiply;
   border-radius: 20px;
   padding: 3rem;
   margin-bottom: 2rem;
   border: 1px solid #0b3d91;
+}
+
+div.container h3 {
+  color: #fc7c21;
+  text-transform: uppercase;
 }
 
 nav {
@@ -188,23 +181,32 @@ nav a {
   transition: all 0.3s ease;
   position: relative;
   font-weight: 500;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s ease;
 }
-nav a::before {
+nav a::after {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(45deg, #00bcd4, #9c27b0);
-  border-radius: 25px;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1.5px;
+  background-color: #fc3d21;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
 }
 nav a:hover {
-  color: white;
-  transform: translateY(-2px);
+  color: #75fff1;
 }
-nav a:hover::before {
-  opacity: 1;
+nav a:hover::after {
+  transform: scaleX(1);
+}
+
+section.container {
+  background-color: #fffcf9;
 }
 
 main {
@@ -264,8 +266,8 @@ section ul li, section ol li {
   color: #0b3d91;
 }
 section blockquote {
-  background: rgba(156, 39, 176, 0.1);
-  border-left: 4px solid #9c27b0;
+  background: rgba(70, 233, 255, 0.0901960784);
+  border-left: 4px solid #0b3d91;
   padding: 1.5rem;
   margin: 2rem 0;
   border-radius: 0 15px 15px 0;
@@ -277,7 +279,7 @@ section blockquote::before {
   top: -10px;
   left: 10px;
   font-size: 4rem;
-  color: #9c27b0;
+  color: #0b3d91;
   opacity: 0.3;
 }
 section blockquote p {
@@ -303,6 +305,18 @@ header h2 {
 header p a {
   color: #fc3d21;
   font-weight: 600;
+}
+
+#files .container h3 {
+  text-align: center;
+  width: 100%;
+}
+
+#files .container a {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
 aside {
@@ -331,52 +345,123 @@ aside h2, aside h4 {
 }
 
 a {
-  color: #4fc3f7;
+  color: #0c0c0c;
   text-decoration: none;
+  font-weight: 600;
+  position: relative;
   transition: all 0.3s ease;
 }
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1.5px;
+  background-color: #fc3d21;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
 a:hover {
-  color: #80cbc4;
-  text-shadow: 0 0 5px rgba(128, 203, 196, 0.5);
+  color: #0b3d91;
+}
+a:hover::after {
+  transform: scaleX(1);
 }
 
 .link-guidelines,
-.link-downloadcss,
-.link-downloadhtml,
-.link-codepen,
 .link-allstyles {
   display: inline-block;
-  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  position: relative; /* Needed for ::before */
+  background: linear-gradient(135deg, #fc3d21, #fc7c21);
   color: white;
   padding: 1rem 2rem;
   border-radius: 50px;
   font-weight: bold;
   margin: 1rem 0;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+  box-shadow: 0 4px 15px rgba(70, 233, 255, 0.0901960784);
+  overflow: hidden; /* Hide ::before overflow */
+}
+.link-guidelines::before,
+.link-allstyles::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  pointer-events: none;
 }
 .link-guidelines:hover,
-.link-downloadcss:hover,
-.link-downloadhtml:hover,
-.link-codepen:hover,
 .link-allstyles:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+  box-shadow: 0 8px 25px rgba(90, 90, 90, 0.4);
   color: white;
+  background: linear-gradient(90deg, #4fc3f7, #0b3d91);
+}
+.link-guidelines:hover::before,
+.link-allstyles:hover::before {
+  left: 100%;
+}
+
+.link-codepen,
+.link-downloadcss,
+.link-downloadhtml {
+  display: inline-block;
+  position: relative; /* Needed for ::before */
+  background: radial-gradient(rgba(70, 233, 255, 0.0901960784), #0b7991);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: bold;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(70, 233, 255, 0.0901960784);
+  overflow: hidden; /* Hide ::before overflow */
+}
+.link-codepen::before,
+.link-downloadcss::before,
+.link-downloadhtml::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+  pointer-events: none;
+}
+.link-codepen:hover,
+.link-downloadcss:hover,
+.link-downloadhtml:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(117, 255, 241, 0.2549019608);
+  color: white;
+  background: linear-gradient(90deg, #4fc3f7, #0b3d91);
+}
+.link-codepen:hover::before,
+.link-downloadcss:hover::before,
+.link-downloadhtml:hover::before {
+  left: 100%;
 }
 
 .link-github {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, #0c0c0c 0%, #0b3d91 100%);
+  background: linear-gradient(135deg, #fc3d21, #fc7c21);
   color: white;
   padding: 1rem 2rem;
   text-decoration: none;
   border-radius: 50px;
   font-weight: bold;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px rgba(70, 233, 255, 0.0901960784);
   position: relative;
   overflow: hidden;
 }
@@ -392,7 +477,9 @@ a:hover {
 }
 .link-github:hover {
   transform: translateY(-2px);
+  color: #fffcf9;
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+  background: linear-gradient(90deg, #4fc3f7, #0b3d91);
 }
 .link-github:hover::before {
   left: 100%;
@@ -443,6 +530,34 @@ a:hover {
     transform: translateY(0);
   }
 }
+/* Steps to Contribute - left side */
+#contribute > section.container {
+  flex: 2; /* take twice the space */
+  min-width: 300px;
+}
+
+/* Files - right side */
+#contribute > footer#files.container {
+  flex: 1;
+  min-width: 200px;
+  margin-top: 0; /* remove any top margin to align properly */
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 700px) {
+  #contribute {
+    flex-direction: column;
+  }
+  #contribute > section.container,
+  #contribute > footer#files.container {
+    flex: none;
+    min-width: auto;
+  }
+}
+.link-github svg path {
+  fill: #fffcf9; /* any color you want */
+}
+
 @media (min-width: 1200px) {
   article#about .container {
     gap: 6rem;

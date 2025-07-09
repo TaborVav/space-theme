@@ -8,11 +8,19 @@ $prime-black: #0c0c0c;
 $prime-white: #fffcf9;
 $prime-red: #fc3d21;
 $prime-blue: #0b3d91;
+$prime-opaque: #46e9ff17;
+$prime-electric: #75fff1;
+
 
 // Global Reset
 * {
   text-align: left;
   color: $prime-black;
+}
+
+h2 {
+  font-family: "Sarpanch", sans-serif;
+
 }
 
 // ----------------------------------
@@ -33,10 +41,9 @@ header {
     content: '';
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(to bottom, transparent 0 1px, rgba(94, 94, 94, 0.07) 1px 2px);
     pointer-events: none;
     z-index: 10;
-    animation: scanlines 1.5s infinite linear;
+    // animation: scanlines 1.5s infinite linear;
   }
 
   
@@ -67,7 +74,7 @@ header {
     animation: fade-in-up 1s ease 1s forwards;
 
     a {
-      color: $prime-black;
+      color: $prime-blue;
       text-decoration: none;
       position: relative;
       border-bottom: 1px solid transparent;
@@ -80,42 +87,28 @@ header {
         left: 0;
         width: 0;
         height: 1.5px;
-        background: $prime-black;
+        background: $prime-red;
         transition: width 0.3s ease;
       }
 
       &:hover {
-        color: lighten($prime-black, 20%);
-        text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+        color: lighten($prime-blue, 20%);
+        text-shadow: 0 0 6px $prime-white;
 
         &::after {
           width: 100%;
-          background: lighten($prime-black, 40%);
+          background: lighten($prime-blue, 40%);
         }
       }
     }
+    
   }
 
   .container {
     border: none;
   }
 
-  a.link {
-    background: none;
-    border: 2px solid $prime-black;
-    color: $prime-black;
-    padding: 0.75rem 1.5rem;
-    font-family: "Sarpanch", sans-serif;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-
-    &:hover {
-      background-color: $prime-black;
-      color: $prime-white;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
-    }
-  }
+ 
 }
 
 // ----------------------------------
@@ -127,7 +120,20 @@ div.container {
   // padding: 0 2rem;
   // position: relative;
   z-index: 2;
-  background-color: $prime-white;
+  background:
+  /* Top layer: horizontal fade mask (left/right strong, center clear) */
+  linear-gradient(to right,
+    $prime-opaque 0%,
+    transparent 40%,
+    transparent 60%,
+    $prime-opaque 100%),
+
+  /* Bottom layer: repeating glowing blue bands */
+  repeating-linear-gradient(to bottom,
+    $prime-opaque 0 2px,
+    transparent 2px 6px);
+
+background-blend-mode: multiply;
   border-radius: 20px;
   padding: 3rem;
   margin-bottom: 2rem;
@@ -135,6 +141,12 @@ div.container {
   // backdrop-filter: blur(5px);
   // overflow: hidden;
 }
+
+div.container h3{
+  color: #fc7c21;
+  text-transform: uppercase;
+}
+
 
 // ----------------------------------
 // NAVIGATION
@@ -166,26 +178,39 @@ nav {
     position: relative;
     font-weight: 500;
 
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(45deg, #00bcd4, #9c27b0);
-      border-radius: 25px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: -1;
-    }
+    text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: all 0.3s ease;
 
-    &:hover {
-      color: white;
-      transform: translateY(-2px);
-
-      &::before {
-        opacity: 1;
-      }
-    }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; // space below the text
+    width: 100%;
+    height: 1.5px;
+    background-color: $prime-red;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
   }
+
+  &:hover {
+    color: $prime-electric;
+
+    &::after {
+      transform: scaleX(1);
+    }
+
+    // Optional glow on hover
+    // text-shadow: 0 0 5px $prime-blue;
+  }
+}
+}
+
+section.container{
+  background-color: $prime-white;
 }
 
 // ----------------------------------
@@ -255,8 +280,8 @@ section {
   }
 
   blockquote {
-    background: rgba(156, 39, 176, 0.1);
-    border-left: 4px solid #9c27b0;
+    background: $prime-opaque;
+    border-left: 4px solid $prime-blue;
     padding: 1.5rem;
     margin: 2rem 0;
     border-radius: 0 15px 15px 0;
@@ -268,7 +293,7 @@ section {
       top: -10px;
       left: 10px;
       font-size: 4rem;
-      color: #9c27b0;
+      color: $prime-blue;
       opacity: 0.3;
     }
 
@@ -291,6 +316,8 @@ section {
   }
 }
 
+
+
 header h2 {
   color: $prime-blue;
   font-size: 1.1rem;
@@ -301,6 +328,21 @@ header p a{
   color: $prime-red;
   font-weight: 600;
 }
+
+#files .container h3 {
+  text-align: center;
+  width: 100%;
+}
+
+
+
+#files .container a {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
 // ----------------------------------
 // ASIDE
 // ----------------------------------
@@ -337,35 +379,121 @@ aside {
 // LINKS
 // ----------------------------------
 a {
-  color: #4fc3f7;
+  color: $prime-black;
   text-decoration: none;
+  font-weight: 600;
+  position: relative;
   transition: all 0.3s ease;
 
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; // space below the text
+    width: 100%;
+    height: 1.5px;
+    background-color: $prime-red;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
   &:hover {
-    color: #80cbc4;
-    text-shadow: 0 0 5px rgba(128, 203, 196, 0.5);
+    color: $prime-blue;
+
+    &::after {
+      transform: scaleX(1);
+    }
+
+    // Optional glow on hover
+    // text-shadow: 0 0 5px $prime-blue;
   }
 }
 
 .link-guidelines,
-.link-downloadcss,
-.link-downloadhtml,
-.link-codepen,
 .link-allstyles {
   display: inline-block;
-  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  position: relative; /* Needed for ::before */
+  background: linear-gradient(135deg, $prime-red, #fc7c21);
   color: white;
   padding: 1rem 2rem;
   border-radius: 50px;
   font-weight: bold;
   margin: 1rem 0;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+  box-shadow: 0 4px 15px $prime-opaque;
+  overflow: hidden; /* Hide ::before overflow */
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.5s ease;
+    pointer-events: none;
+  }
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+    box-shadow: 0 8px 25px rgba(90, 90, 90, 0.4);
     color: white;
+    background: linear-gradient(90deg, #4fc3f7, $prime-blue);
+
+    &::before {
+      left: 100%;
+    }
+  }
+}
+.link-codepen,
+.link-downloadcss,
+.link-downloadhtml {
+  display: inline-block;
+  position: relative; /* Needed for ::before */
+  background: radial-gradient( $prime-opaque,  #0b7991,);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: bold;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px $prime-opaque;
+  overflow: hidden; /* Hide ::before overflow */
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.5s ease;
+    pointer-events: none;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px #75fff141;
+    color: white;
+    background: linear-gradient(90deg, #4fc3f7, $prime-blue);
+
+
+    &::before {
+      left: 100%;
+    }
   }
 }
 
@@ -373,14 +501,14 @@ a {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: linear-gradient(135deg, $prime-black 0%, $prime-blue 100%);
+  background: linear-gradient(135deg, $prime-red, #fc7c21);
   color: white;
   padding: 1rem 2rem;
   text-decoration: none;
   border-radius: 50px;
   font-weight: bold;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 4px 15px $prime-opaque;
   position: relative;
   overflow: hidden;
 
@@ -397,7 +525,11 @@ a {
 
   &:hover {
     transform: translateY(-2px);
+    color: $prime-white;
     box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(90deg, #4fc3f7, $prime-blue);
+
+    
 
     &::before {
       left: 100%;
@@ -429,4 +561,39 @@ a {
 @keyframes fade-in-up {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+
+// =======
+
+//* Make the parent container flex container */
+
+
+/* Steps to Contribute - left side */
+#contribute > section.container {
+  flex: 2;             /* take twice the space */
+  min-width: 300px;
+}
+
+/* Files - right side */
+#contribute > footer#files.container {
+  flex: 1;
+  min-width: 200px;
+  margin-top: 0;       /* remove any top margin to align properly */
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 700px) {
+  #contribute {
+    flex-direction: column;
+  }
+  #contribute > section.container,
+  #contribute > footer#files.container {
+    flex: none;
+    min-width: auto;
+  }
+}
+
+.link-github svg path {
+  fill: $prime-white; /* any color you want */
 }
