@@ -334,7 +334,7 @@ aside#styles::before {
   content: url("images/ufo.webp");
   position: absolute;
   top: -20px;
-  left: -20px;
+  left: 400px;
   font-size: 3.5rem;
   opacity: 0.5;
   animation: float-ufo-dramatic 2s ease-in-out infinite alternate;
@@ -488,6 +488,9 @@ a:hover::after {
   width: 20px;
   height: 20px;
   fill: currentColor;
+}
+.page-footer {
+  background-color: #e6f3ff;
 }
 
 @keyframes reveal-text {
